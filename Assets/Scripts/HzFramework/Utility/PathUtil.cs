@@ -8,12 +8,9 @@ public class PathUtil
     /// <summary>
     /// 获取Resource路径
     /// </summary>
-    public static string resourcePath
+    public static string GetResourcePath()
     {
-        get
-        {
-            return Application.dataPath + "/Resources/";
-        }
+        return Application.dataPath + "/Resources/";
     }
 
     /// <summary>
@@ -29,27 +26,38 @@ public class PathUtil
             int i = Application.dataPath.LastIndexOf('/');
             return Application.dataPath.Substring(0, i + 1) + "/";
 #else
-            return Application.persistentDataPath + "/";
+            return "";
 #endif
         }
     }
 
     /// <summary>
-    /// 获取streamingassets路径
+    /// 获取可读可写路径，通过WWW的方式
     /// </summary>
-    public static string streamingAssetsPath
+    public static string GetPersistentWWWPath()
     {
-        get
-        {
-#if UNITY_EDITOR && !UNITY_EDITOR_OSX
-            return "file:///" + Application.streamingAssetsPath + "/";
+#if UNITY_ANDROID
+        return "file:///" + persistentDataPath;
 #elif UNITY_IOS
-            return "file://" + Application.streamingAssetsPath + "/";
-#elif UNITY_ANDROID
-            return Application.streamingAssetsPath + "/";
+        return "file://" + persistentDataPath;
 #else
-            return "";
+        return "";
 #endif
-        }
+    }
+
+    /// <summary>
+    /// 获取streamingassets路径，通过WWW的方式
+    /// </summary>
+    public static string GetLocalStreamingWWWPath()
+    {
+#if UNITY_EDITOR && !UNITY_EDITOR_OSX
+        return "file:///" + Application.streamingAssetsPath + "/";
+#elif UNITY_IOS
+        return "file://" + Application.streamingAssetsPath + "/";
+#elif UNITY_ANDROID
+        return Application.streamingAssetsPath + "/";
+#else
+        return "";
+#endif
     }
 }

@@ -11,7 +11,7 @@ public class SingletonUnity<T> : MonoBehaviour, ISingleton where T : MonoBehavio
         {
             if (instance == null)
             {
-                instance = GameObject.FindObjectOfType<T>();
+                instance = FindObjectOfType<T>();
                 if (instance == null)
                 {
                     GameObject go = new GameObject("Temp");
