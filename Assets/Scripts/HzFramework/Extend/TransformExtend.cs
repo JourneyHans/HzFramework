@@ -14,4 +14,19 @@ public static class TransformExtend
     {
         return transform.Find(name).GetComponent<T>();
     }
+
+    /// <summary>
+    /// 查找节点的根节点
+    /// </summary>
+    /// <param name="transform"></param>
+    /// <returns></returns>
+    public static Transform FindRoot(this Transform transform)
+    {
+        if (transform.parent == null)
+        {
+            return transform;
+        }
+
+        return FindRoot(transform.parent);
+    }
 }

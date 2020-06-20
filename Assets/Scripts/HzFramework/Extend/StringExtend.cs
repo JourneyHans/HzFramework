@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 public static class StringExtend
@@ -15,8 +16,7 @@ public static class StringExtend
         for (int i = 0; i < stringArray.Length; ++i)
         {
             string s = stringArray[i];
-            int n;
-            if (int.TryParse(s, out n))
+            if (int.TryParse(s, out int n))
             {
                 intArray[i] = n;
             }
