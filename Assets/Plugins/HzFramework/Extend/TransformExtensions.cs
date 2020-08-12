@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class TransformExtend
+public static class TransformExtensions
 {
     /// <summary>
     /// 查找子节点上的某个组件
@@ -22,11 +22,14 @@ public static class TransformExtend
     /// <returns></returns>
     public static Transform FindRoot(this Transform transform)
     {
-        if (transform.parent == null)
+        while (true)
         {
-            return transform;
-        }
+            if (transform.parent == null)
+            {
+                return transform;
+            }
 
-        return FindRoot(transform.parent);
+            transform = transform.parent;
+        }
     }
 }
